@@ -142,6 +142,6 @@ goto :EOF
 :ASK_FOR_REBOOT
 set "choice="
 echo A reboot is required to finish applying changes.
-set /p choice="Would you like to reboot your PC? (y/N) "
+set /p choice="Would you like to reboot your PC? (Y/N) "
 if /I "%choice%"=="y" shutdown -r -t 0
 goto :EOF
