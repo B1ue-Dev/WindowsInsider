@@ -5,7 +5,7 @@ For /f "tokens=4,5,6 delims=[]. " %%G in ('ver') Do (set _major=%%G& set _minor=
 
 if %_build% LSS 17763 (
     echo =========================================================
-    echo Only Windows 10 RS5 and later are compatible to run this.
+    echo Only Windows 10 RS5 (17763) and later are compatible to run this.
     echo Your Windows build version: %_build%
     echo =========================================================
     echo.
