@@ -6,6 +6,7 @@ For /f "tokens=4,5,6 delims=[]. " %%G in ('ver') Do (set _major=%%G& set _minor=
 if %_build% LSS 17763 (
     echo =========================================================
     echo Only Windows 10 RS5 and later are compatible to run this.
+    echo Your Windows build version: %_build%
     echo =========================================================
     echo.
     pause
@@ -31,7 +32,8 @@ IF %ERRORLEVEL% EQU 0 set "FlightSigningEnabled=1"
 :CHOICE_MENU
 cls
 set "choice="
-echo Windows Insider Program v%scriptver%
+echo Windows Insider Program
+echo Your Windows build version: %_build%
 echo.
 echo 1 - Enroll to Dev Channel
 echo Ideal for highly technical users. Be the first to access the latest Windows 11 builds earliest in the development cycle with the newest code. There will be some rough edges and low stability.
@@ -48,7 +50,7 @@ echo.
 echo 5 - Quit without making any changes
 echo.
 echo.
-set /p choice="Choice: "
+set /p choice="Your choice: "
 echo.
 if /I "%choice%"=="1" goto :ENROLL_DEV
 if /I "%choice%"=="2" goto :ENROLL_BETA
