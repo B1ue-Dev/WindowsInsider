@@ -5,7 +5,7 @@ For /f "tokens=4,5,6 delims=[]. " %%G in ('ver') Do (set _major=%%G& set _minor=
 
 if %_build% LSS 17763 (
     echo =========================================================
-    echo Only Windows 10 RS5 (17763) and later are compatible to run this.
+    echo Only Windows 10 RS5 and later are compatible to run this.
     echo Your Windows build version: %_build%
     echo =========================================================
     echo.
@@ -117,11 +117,14 @@ reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\WindowsSelfHost\UI\Visibility" /t
 goto :EOF
 
 :ENROLL
-echo Applying changes...
+echo You choose to enroll in %Channel% Channel.
+echo Applying changes to your devices. Please wait!
 call :RESET_INSIDER_CONFIG 1>NUL 2>NUL
 call :ADD_INSIDER_CONFIG 1>NUL 2>NUL
 bcdedit /set {current} flightsigning yes >NUL 2>&1
+echo.
 echo Done.
+echo Your device is enrolled in the Windows Insider Program and you will receive Windows Insider Preview builds from %Channel% Channel.
 
 echo.
 IF %FlightSigningEnabled% NEQ 1 goto :ASK_FOR_REBOOT
@@ -142,6 +145,6 @@ goto :EOF
 :ASK_FOR_REBOOT
 set "choice="
 echo A reboot is required to finish applying changes.
-set /p choice="Would you like to reboot your PC? (Y/N) "
+set /p choice="Would you like to reboot your PC? (y/N) "
 if /I "%choice%"=="y" shutdown -r -t 0
 goto :EOF
